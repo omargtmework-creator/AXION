@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  --bg-base: #080a0f;
+  --bg-surface: #0d1117;
+  --bg-elevated: #131920;
+  --accent-primary: #c8a96e;
+  --accent-secondary: #4a7fa5;
+  --accent-glow: #c8a96e22;
+  --text-primary: #f0ede6;
+  --text-secondary: #8a8d96;
+  --text-tertiary: #4a4d56;
+  --border: #1c2330;
+  --border-accent: #c8a96e44;
+}
+
+@theme inline {
+  --color-bg-base: var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: radial-gradient(circle at top left, #c8a96e14 0%, transparent 38%),
+    var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body), sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: radial-gradient(#ffffff 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+}
+
+a,
+button {
+  transition: all 0.25s ease;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 999px;
+}
+
+.section-wrap {
+  @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+}
+
+.gold-border-hover {
+  @apply border border-border transition-all duration-300 hover:border-[var(--border-accent)] hover:shadow-[0_0_35px_var(--accent-glow)];
+}
+
+.ticker {
+  animation: marquee 24s linear infinite;
+}
+
+.ticker-slow {
+  animation: marquee 32s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.dash-line::after {
+  content: "";
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  top: 50%;
+  height: 1px;
+  border-top: 1px dashed var(--border-accent);
+  transform-origin: left;
+  animation: drawLine 1.2s ease forwards;
+}
+
+@keyframes drawLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
